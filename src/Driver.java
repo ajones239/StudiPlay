@@ -1,4 +1,4 @@
-import frames.LoginFrame;
+import view.LoginFrame;
 
 public class Driver {
 

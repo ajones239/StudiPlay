@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,8 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import database.Manager;
-import models.IQuizUpdater;
-import models.Quiz;
+import model.IQuizUpdater;
+import model.Quiz;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

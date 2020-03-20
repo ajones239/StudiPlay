@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import models.Question;
-import models.Quiz;
+import model.Question;
+import model.Quiz;
 
 public class Manager {
 

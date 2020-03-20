@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,8 +17,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import database.Manager;
-import models.Question;
-import models.Quiz;
+import model.Question;
+import model.Quiz;
 
 public class StartQuizFrame extends JFrame {
 

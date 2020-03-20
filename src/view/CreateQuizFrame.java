@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -18,8 +18,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import database.Manager;
-import models.IQuizUpdater;
-import models.Question;
+import model.IQuizUpdater;
+import model.Question;
 
 public class CreateQuizFrame extends JFrame {
 
