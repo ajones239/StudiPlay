@@ -176,7 +176,18 @@ public class LoginFrame extends JFrame {
 					if(userType.equals("TEACHER")) {
 						new TeacherFrame(id).setVisible(true);
 					}else {
-						new StudentFrame(id).setVisible(true);
+						String[] sessionTypes = {"Practice","Quiz"};
+						String sessionType = (String) JOptionPane.showInputDialog(null, 
+								"Please select session type:", 
+								"Session Type Selection", 
+								JOptionPane.QUESTION_MESSAGE, 
+								null, sessionTypes, sessionTypes[0]);
+						if (sessionType == null) 								// if dialog is canceled, null is returned. -> back to LoginFrame
+							new LoginFrame().setVisible(true);
+						else if (sessionType.equals(sessionTypes[1])) 			// Quiz option -> StartQuizFrame
+							new StartQuizFrame(id).setVisible(true);
+						else 											 		// Practice option -> PracticeMainFrame
+							new PracticeMainFrame().setVisible(true);
 					}
 					dispose();
 					
