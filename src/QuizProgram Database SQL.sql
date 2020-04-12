@@ -61,6 +61,7 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `questionId` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(100) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
   `option1` varchar(45) DEFAULT NULL,
   `option2` varchar(45) DEFAULT NULL,
   `option3` varchar(45) DEFAULT NULL,
