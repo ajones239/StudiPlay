@@ -205,4 +205,25 @@ public class Manager {
 		
 	}
 	
+	public ArrayList<Question> getQuestions(String subject) {
+		ArrayList<Question> questions = new ArrayList();
+		try {
+			ResultSet result = database.executeQuery("SELECT question, option1, option2, option3, option4, correctIndex, help FROM quizprogram.question WHERE category='"+subject+"';");
+			while(result.next()) {
+				String question = result.getString(1);
+				String opt1 = result.getString(2);
+				String opt2 = result.getString(3);
+				String opt3 = result.getString(4);
+				String opt4 = result.getString(5);
+				int correctIndex = result.getInt(6);
+				String hint = result.getString(7);
+				questions.add(new Question(subject, question, opt1, opt2, opt3, opt4, correctIndex, hint));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return questions;
+	}
+	
 }
