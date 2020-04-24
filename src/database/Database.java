@@ -38,7 +38,8 @@ public class Database {
         try { 
             
         	connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/quizprogram?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1179215aA");
-            statement = connection.createStatement();
+
+        	statement = connection.createStatement();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

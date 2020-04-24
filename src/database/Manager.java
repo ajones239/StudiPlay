@@ -70,12 +70,13 @@ public class Manager {
 		
 	}
 	
-	public void addQuiz(String quizTitle, int minutes, String key, int size, int teacher, ArrayList<Question> questions) {
+	public void addQuiz(String quizTitle, String subject, int minutes, String key, int size, int teacher, ArrayList<Question> questions) {
 		
 		try {
 			
 			// adding quiz..
-			database.execute("INSERT INTO QUIZ(QUIZNAME, QUIZKEY, TOTALQUESTIONS, TIMELIMIT, TEACHERID) VALUES('"+quizTitle+"','"+key+"',"+questions.size()+","+minutes+","+teacher+");");
+			database.execute("INSERT INTO QUIZ(QUIZNAME, SUBJECT, QUIZKEY, TOTALQUESTIONS, TIMELIMIT, TEACHERID) "
+					+ "VALUES('"+quizTitle+"','"+subject+"','"+key+"',"+questions.size()+","+minutes+","+teacher+");");
 			int quizId = getLastInserted();
 			if(quizId != -1) {
 				
@@ -106,10 +107,34 @@ public class Manager {
 			while(result.next()) {
 				int id = result.getInt(1);
 				String name = result.getString(2);
-				String key = result.getString(3);
-				int size = result.getInt(4);
-				int minutes = result.getInt(5);
-				quizes.add(new Quiz(id, name, key, size, minutes));
+				String subject = result.getString(3);
+				String key = result.getString(4);
+				int size = result.getInt(5);
+				int minutes = result.getInt(6);
+				quizes.add(new Quiz(id, name, subject, key, size, minutes));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return quizes;
+		
+	}
+	
+	public ArrayList<Quiz> getAllQuizes() {
+		
+		ArrayList<Quiz> quizes = new ArrayList<>();
+		
+		try {
+			ResultSet result = database.executeQuery("SELECT * FROM QUIZ");
+			while(result.next()) {
+				int id = result.getInt(1);
+				String name = result.getString(2);
+				String subject = result.getString(3);
+				String key = result.getString(4);
+				int size = result.getInt(5);
+				int minutes = result.getInt(6);
+				quizes.add(new Quiz(id, name, subject, key, size, minutes));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -141,9 +166,10 @@ public class Manager {
 			if(result.next()) {
 				
 				String name = result.getString(2);
-				String key = result.getString(3);
-				int size = result.getInt(4);
-				int minutes = result.getInt(5);
+				String subject = result.getString(3);
+				String key = result.getString(4);
+				int size = result.getInt(5);
+				int minutes = result.getInt(6);
 				
 				// reading quiz..
 				result = database.executeQuery("SELECT question,option1,option2,option3,option4,"
@@ -163,7 +189,7 @@ public class Manager {
 					
 				}
 				
-				return new Quiz(id, name, key, size, minutes, questions);
+				return new Quiz(id, name, subject, key, size, minutes, questions);
 				
 			}
 		}catch(Exception e) {
@@ -205,8 +231,8 @@ public class Manager {
 		
 	}
 	
-	public ArrayList<Question> getQuestions(String subject) {
-		ArrayList<Question> questions = new ArrayList();
+	/*public ArrayList<Question> getQuestions(String subject) {
+		ArrayList<Question> questions = new ArrayList<>();
 		try {
 			ResultSet result = database.executeQuery("SELECT question, option1, option2, option3, option4, correctIndex, help FROM quizprogram.question WHERE category='"+subject+"';");
 			while(result.next()) {
@@ -224,6 +250,7 @@ public class Manager {
 			e.printStackTrace();
 		}
 		return questions;
-	}
+	}*/
+	
 	
 }

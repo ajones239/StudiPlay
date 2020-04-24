@@ -40,6 +40,9 @@ public class QuizFrame extends JFrame {
 	private JLabel lblTime;
 	private int studentId;
 	private volatile boolean execute = true;
+	private JButton btnExit;
+	private JButton btnPause;
+	private boolean pause = false;
 	
 	public QuizFrame(int id, int student) {
 		
@@ -48,7 +51,7 @@ public class QuizFrame extends JFrame {
 		seconds = quiz.getMinutes() * 60;
 		setTitle("Quiz of Student");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 671, 441);
+		setBounds(100, 100, 671, 473);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,19 +82,19 @@ public class QuizFrame extends JFrame {
 		panel.add(questionLbl);
 		
 		option1 = new JRadioButton("Option 1");
-		option1.setBounds(22, 108, 141, 23);
+		option1.setBounds(22, 108, 592, 23);
 		panel.add(option1);
 		
 		option2 = new JRadioButton("Option 1");
-		option2.setBounds(22, 143, 141, 23);
+		option2.setBounds(22, 143, 592, 23);
 		panel.add(option2);
 		
 		option3 = new JRadioButton("Option 1");
-		option3.setBounds(22, 178, 141, 23);
+		option3.setBounds(22, 178, 592, 23);
 		panel.add(option3);
 		
 		option4 = new JRadioButton("Option 1");
-		option4.setBounds(22, 213, 141, 23);
+		option4.setBounds(22, 213, 592, 23);
 		panel.add(option4);
 		ButtonGroup group = new ButtonGroup();
 		group.add(option1);
@@ -129,10 +132,48 @@ public class QuizFrame extends JFrame {
 		});
 		
 		btnHint.setBackground(Color.WHITE);
-		btnHint.setBounds(497, 264, 117, 35);
+		btnHint.setBounds(497, 259, 117, 35);
 		panel.add(btnHint);
 		
+		btnPause = new JButton("Pause");
+		btnPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				pause = !pause;
+				if(pause) {
+					execute = false;
+					btnPause.setText("Continue");
+					btnNext.setEnabled(false);
+				} else {
+					execute = true;
+					btnPause.setText("Pause");
+					btnNext.setEnabled(true);
+					startTime();
+				}
+				
+			}
+		});
+		btnPause.setBackground(Color.WHITE);
+		btnPause.setBounds(367, 259, 117, 35);
+		panel.add(btnPause);
+		
+		btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBackground(Color.WHITE);
+		btnExit.setBounds(531, 404, 117, 29);
+		contentPane.add(btnExit);
+		
 		printNext();
+		
+		startTime();
+	
+	}
+	
+	private void startTime() {
 		
 		new Thread() {
 			
@@ -157,14 +198,16 @@ public class QuizFrame extends JFrame {
 			}
 			
 		}.start();
-	
+		
 	}
 
 	private void printNext() {
 	
 		if(index == quiz.getSize()) {
 			execute = false;
-			save();
+			if(studentId != -1) {
+				save();
+			}
 			JOptionPane.showMessageDialog(null, "Quiz is Complete.");
 			dispose();
 			new LoginFrame().setVisible(true);

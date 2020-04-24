@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import database.Manager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginFrame extends JFrame {
 
@@ -153,6 +155,16 @@ public class LoginFrame extends JFrame {
 		lblName.setBounds(7, 81, 87, 16);
 		regPanel.add(lblName);
 		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBackground(Color.WHITE);
+		btnExit.setBounds(20, 284, 117, 29);
+		contentPane.add(btnExit);
+		
 	}
 	
 	private void listeners() {
@@ -187,7 +199,7 @@ public class LoginFrame extends JFrame {
 						else if (sessionType.equals(sessionTypes[1])) 			// Quiz option -> StartQuizFrame
 							new StartQuizFrame(id).setVisible(true);
 						else 											 		// Practice option -> PracticeMainFrame
-							new PracticeMainFrame().setVisible(true);
+							new QuizPracticeFrame().setVisible(true);;
 					}
 					dispose();
 					

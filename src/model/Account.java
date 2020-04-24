@@ -1,5 +1,6 @@
 package model;
 
+
 /*
  * This class models accounts. Accounts include a user ID and password and can be instructor or student accounts. 
  */

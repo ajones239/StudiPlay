@@ -1,8 +1,10 @@
 package model;
 
+
 import java.util.*;
 
 import database.Manager;
+import model.Question;
 
 public class Subject {
 	public static final String[] SUBJECTS = {"Basic Math", "Algebra", "Science", "Language Arts"};
@@ -10,9 +12,10 @@ public class Subject {
 	String category;
 	
 	public Subject(String category) {
+		
 		this.category = category;
 		Manager m = Manager.getInstance();
-		questions = m.getQuestions(category);
+		//questions = m.getQuestions(category);
 	}
 	
 	public boolean hasNextQuestion(Question q) {

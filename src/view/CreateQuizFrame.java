@@ -43,6 +43,9 @@ public class CreateQuizFrame extends JFrame {
 	private IQuizUpdater updater;
 	private Manager manager;
 	private int teacherId;
+	private JTextField subject;
+	private JLabel lblSubjects;
+	private JButton btnExit;
 
 	public CreateQuizFrame(IQuizUpdater updater, int id) {
 
@@ -97,6 +100,7 @@ public class CreateQuizFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String quizT = quizTitle.getText().toString();
+				String subjectT = subject.getText().toString();
 				int minutesT = 0;
 				try {
 					minutesT = Integer.parseInt(timeLimit.getText());
@@ -105,7 +109,7 @@ public class CreateQuizFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "Time should be in number.");
 					return;
 				}
-				if (quizT.isEmpty()) {
+				if (quizT.isEmpty() || subjectT.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "No any field should be empty.");
 				} 
 				else {
@@ -113,7 +117,7 @@ public class CreateQuizFrame extends JFrame {
 					String key = getKey();
 					
 					// adding quiz. 
-					manager.addQuiz(quizT, minutesT, key, quizes.size(), teacherId, quizes);
+					manager.addQuiz(quizT, subjectT, minutesT, key, quizes.size(), teacherId, quizes);
 					updater.notifyQuizUpdated();
 					JOptionPane.showMessageDialog(null, "Quiz is added.");
 					dispose();
@@ -144,13 +148,13 @@ public class CreateQuizFrame extends JFrame {
 	private void addComponents() {
 
 		quizTitle = new JTextField();
-		quizTitle.setBounds(107, 19, 223, 26);
+		quizTitle.setBounds(107, 19, 160, 26);
 		contentPane.add(quizTitle);
 		quizTitle.setColumns(10);
 
 		timeLimit = new JTextField();
 		timeLimit.setColumns(10);
-		timeLimit.setBounds(465, 19, 223, 26);
+		timeLimit.setBounds(601, 19, 87, 26);
 		contentPane.add(timeLimit);
 
 		JLabel lblQuizTitle = new JLabel("Quiz Title");
@@ -158,7 +162,7 @@ public class CreateQuizFrame extends JFrame {
 		contentPane.add(lblQuizTitle);
 
 		JLabel lblTimeLimit = new JLabel("Time (minutes):");
-		lblTimeLimit.setBounds(342, 24, 111, 16);
+		lblTimeLimit.setBounds(478, 24, 111, 16);
 		contentPane.add(lblTimeLimit);
 
 		JPanel panel = new JPanel();
@@ -246,6 +250,25 @@ public class CreateQuizFrame extends JFrame {
 		lblTotalQuestions = new JLabel("Total Questions:");
 		lblTotalQuestions.setBounds(489, 499, 194, 16);
 		contentPane.add(lblTotalQuestions);
+		
+		subject = new JTextField();
+		subject.setBounds(366, 19, 100, 26);
+		contentPane.add(subject);
+		subject.setColumns(10);
+		
+		lblSubjects = new JLabel("Subjects:");
+		lblSubjects.setBounds(279, 24, 75, 16);
+		contentPane.add(lblSubjects);
+		
+		btnExit = new JButton("Exit");
+		btnExit.setBackground(Color.WHITE);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBounds(220, 494, 117, 29);
+		contentPane.add(btnExit);
 
 	}
 

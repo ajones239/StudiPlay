@@ -5,7 +5,6 @@ public class Question {
 	// Attributes..
 	private int id;
 	private String question;
-	private String category;
 	private String option1;
 	private String option2;
 	private String option3;
@@ -16,7 +15,6 @@ public class Question {
 	public Question(int id, String question, String option1, String option2, String option3, String option4,
 			int correctIndex, String hint) {
 	
-		this.category = "custom";
 		this.id = id;
 		this.question = question;
 		this.option1 = option1;
@@ -31,7 +29,6 @@ public class Question {
 	public Question(String question, String option1, String option2, String option3, String option4,
 			int correctIndex, String hint) {
 	
-		this.category = "custom";
 		this.question = question;
 		this.option1 = option1;
 		this.option2 = option2;
@@ -40,20 +37,6 @@ public class Question {
 		this.correctIndex = correctIndex;
 		this.hint = hint;
 
-	}
-	
-	public Question(String category, String question, String option1, String option2, String option3, String option4,
-			int correctIndex, String hint) {
-		
-		this.category = category;
-		this.question = question;
-		this.option1 = option1;
-		this.option2 = option2;
-		this.option3 = option3;
-		this.option4 = option4;
-		this.correctIndex = correctIndex;
-		this.hint = hint;
-		
 	}
 
 	public int getId() {
@@ -124,14 +107,6 @@ public class Question {
 		
 		return new String[] {question, option1, option2, option3, option4, correctIndex+"", hint};
 		
-	}
-	
-	public void setCategory(String cat) {
-		category = cat;
-	}
-	
-	public String getCategory() {
-		return category;
 	}
 	
 }

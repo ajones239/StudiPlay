@@ -6,14 +6,16 @@ public class Quiz {
 
 	private int id;
 	private String quizName;
+	private String category;
 	private String key;
 	private int size;
 	private int minutes;
 	private ArrayList<Question> questions;
 	
-	public Quiz(int id, String quizName, String key, int size, int minutes, ArrayList<Question> questions) {
+	public Quiz(int id, String quizName, String category, String key, int size, int minutes, ArrayList<Question> questions) {
 	
 		this.id = id;
+		this.category = category;
 		this.quizName = quizName;
 		this.key = key;
 		this.size = size;
@@ -22,9 +24,10 @@ public class Quiz {
 	
 	}
 	
-	public Quiz(int id, String quizName, String key, int size, int minutes) {
+	public Quiz(int id, String quizName, String category, String key, int size, int minutes) {
 		
 		this.id = id;
+		this.category = category;
 		this.quizName = quizName;
 		this.key = key;
 		this.size = size;
@@ -35,7 +38,7 @@ public class Quiz {
 	
 	public String[] getTableData() {
 		
-		return new String[] {quizName, key, size+"", minutes+""};
+		return new String[] {quizName, category, key, size+"", minutes+""};
 		
 	}
 
@@ -85,6 +88,14 @@ public class Quiz {
 
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 }

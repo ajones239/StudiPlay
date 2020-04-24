@@ -5,6 +5,7 @@ import java.awt.*;
 
 import model.*;
 
+
 public class PracticeMainFrame extends JFrame {
 	
 	JPanel subjectSelectionPane;

@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.Color;
@@ -68,6 +69,16 @@ public class StartQuizFrame extends JFrame {
 		btnStartQuiz.setBackground(Color.WHITE);
 		btnStartQuiz.setBounds(17, 149, 117, 49);
 		contentPane.add(btnStartQuiz);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBackground(Color.WHITE);
+		btnExit.setBounds(146, 149, 117, 49);
+		contentPane.add(btnExit);
 	
 	}
 

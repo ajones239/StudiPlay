@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import database.Manager;
 import model.IQuizUpdater;
 import model.Quiz;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -33,12 +32,13 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 	private Manager manager;
 	private int teacherId;
 	private ArrayList<Quiz> quizes;
+	private JButton btnExit;
 
 	public TeacherFrame(int id) {
 		
 		setTitle("Teacher Frame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 667, 605);
+		setBounds(100, 100, 667, 631);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -115,7 +115,7 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 			data.add(quiz.getTableData());
 		}
 		String[][] stringData = data.toArray(new String[][] {});
-		String[] columns = new String[] { "Quiz Title", "Key", "Questions", "Time(mins)" };
+		String[] columns = new String[] { "Quiz Title","Subject", "Key", "Questions", "Time(mins)" };
 
 		quizTable = new JTable(stringData, columns);
 		quizPane = new JScrollPane(quizTable);
@@ -140,6 +140,16 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 		studentData.setBounds(20, 368, 628, 192);
 		studentPane.setBounds(20, 368, 628, 192);
 		contentPane.add(studentPane);
+		
+		btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBackground(Color.WHITE);
+		btnExit.setBounds(531, 572, 117, 29);
+		contentPane.add(btnExit);
 		
 	}
 
