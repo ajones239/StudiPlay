@@ -1,4 +1,4 @@
-//package view;
+//package frames;
 //
 //import java.awt.Color;
 //

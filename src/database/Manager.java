@@ -70,13 +70,16 @@ public class Manager {
 		
 	}
 	
-	public void addQuiz(String quizTitle, String subject, int minutes, String key, int size, int teacher, ArrayList<Question> questions) {
+	public void addQuiz(String quizTitle, String subject, int minutes, String key, int size, int teacher, ArrayList<Question> questions
+			, boolean practice) {
 		
 		try {
 			
+			int value = (practice ? 1 : 0);
+			System.out.println(practice+" ,"+value);
 			// adding quiz..
-			database.execute("INSERT INTO QUIZ(QUIZNAME, SUBJECT, QUIZKEY, TOTALQUESTIONS, TIMELIMIT, TEACHERID) "
-					+ "VALUES('"+quizTitle+"','"+subject+"','"+key+"',"+questions.size()+","+minutes+","+teacher+");");
+			database.execute("INSERT INTO QUIZ(QUIZNAME, SUBJECT, QUIZKEY, TOTALQUESTIONS, TIMELIMIT, TEACHERID, PRACTICE) "
+					+ "VALUES('"+quizTitle+"','"+subject+"','"+key+"',"+questions.size()+","+minutes+","+teacher+","+value+");");
 			int quizId = getLastInserted();
 			if(quizId != -1) {
 				
@@ -121,12 +124,12 @@ public class Manager {
 		
 	}
 	
-	public ArrayList<Quiz> getAllQuizes() {
+	public ArrayList<Quiz> getAllQuizesByPractice(int isPractice) {
 		
 		ArrayList<Quiz> quizes = new ArrayList<>();
 		
 		try {
-			ResultSet result = database.executeQuery("SELECT * FROM QUIZ");
+			ResultSet result = database.executeQuery("SELECT * FROM QUIZ WHERE PRACTICE="+isPractice);
 			while(result.next()) {
 				int id = result.getInt(1);
 				String name = result.getString(2);

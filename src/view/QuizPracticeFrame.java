@@ -19,7 +19,7 @@ public class QuizPracticeFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> subjects;
-	ArrayList<Quiz> quizes = new ArrayList<>();
+	private ArrayList<Quiz> quizes = new ArrayList<>();
 
 	/**
 	 * Create the frame.
@@ -50,7 +50,7 @@ public class QuizPracticeFrame extends JFrame {
 		btnStartPracticeQuiz.setBounds(41, 101, 169, 52);
 		contentPane.add(btnStartPracticeQuiz);
 		
-		quizes = Manager.getInstance().getAllQuizes();
+		quizes = Manager.getInstance().getAllQuizesByPractice(1);
 		subjects = new JComboBox<>();
 		subjects.setBounds(162, 41, 169, 27);
 		contentPane.add(subjects);

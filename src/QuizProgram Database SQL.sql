@@ -31,17 +31,8 @@ CREATE TABLE `User` (
   `password` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `User`
---
-
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `exam`
@@ -57,17 +48,8 @@ CREATE TABLE `exam` (
   `total` int(11) DEFAULT NULL,
   `correct` int(11) DEFAULT NULL,
   PRIMARY KEY (`examId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `exam`
---
-
-LOCK TABLES `exam` WRITE;
-/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `question`
@@ -86,18 +68,8 @@ CREATE TABLE `question` (
   `correctIndex` int(11) DEFAULT NULL,
   `help` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`questionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `question`
---
-
-LOCK TABLES `question` WRITE;
-/*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,'What is 2+2?','4','5','6','7',0,'Add'),(2,'What is 2+6?','4','5','6','8',3,'Add'),(3,'What is 1+6?','4','5','6','7',3,'Add'),(4,'What is 1+4?','4','5','6','7',1,'Add'),(5,'What is 2+3','4','5','6','7',1,'Add');
-/*!40000 ALTER TABLE `question` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz`
@@ -114,19 +86,10 @@ CREATE TABLE `quiz` (
   `totalQuestions` int(11) DEFAULT NULL,
   `timeLimit` int(11) DEFAULT NULL,
   `teacherId` int(11) DEFAULT NULL,
+  `practice` int(11) DEFAULT NULL,
   PRIMARY KEY (`quizId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz`
---
-
-LOCK TABLES `quiz` WRITE;
-/*!40000 ALTER TABLE `quiz` DISABLE KEYS */;
-INSERT INTO `quiz` VALUES (1,'Practice Quiz','Math','practice',5,20,0);
-/*!40000 ALTER TABLE `quiz` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quizQuestionHelper`
@@ -140,18 +103,8 @@ CREATE TABLE `quizQuestionHelper` (
   `quizId` int(11) DEFAULT NULL,
   `questionId` int(11) DEFAULT NULL,
   PRIMARY KEY (`quizQuestionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quizQuestionHelper`
---
-
-LOCK TABLES `quizQuestionHelper` WRITE;
-/*!40000 ALTER TABLE `quizQuestionHelper` DISABLE KEYS */;
-INSERT INTO `quizQuestionHelper` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5);
-/*!40000 ALTER TABLE `quizQuestionHelper` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -162,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-21  5:37:29
+-- Dump completed on 2020-04-25 19:20:45

@@ -208,7 +208,7 @@ public class QuizFrame extends JFrame {
 			if(studentId != -1) {
 				save();
 			}
-			JOptionPane.showMessageDialog(null, "Quiz is Complete.");
+			JOptionPane.showMessageDialog(null, "Quiz is Complete.\nYour Score: "+scores);
 			dispose();
 			new LoginFrame().setVisible(true);
 		} else {

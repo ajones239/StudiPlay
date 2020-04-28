@@ -2,28 +2,30 @@
 package view;
 
 import java.awt.Color;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import database.Manager;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import model.Quiz;
 
 public class StartQuizFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField key;
+	private JComboBox<String> subjects;
+	private ArrayList<Quiz> quizes = new ArrayList<>();
 
 	public StartQuizFrame(int id) {
 		
@@ -41,12 +43,12 @@ public class StartQuizFrame extends JFrame {
 		contentPane.add(lblStudentFrame);
 		
 		key = new JTextField();
-		key.setBounds(136, 95, 282, 26);
+		key.setBounds(146, 73, 270, 26);
 		contentPane.add(key);
 		key.setColumns(10);
 		
 		JLabel lblEnterKey = new JLabel("Enter Key:");
-		lblEnterKey.setBounds(28, 100, 96, 16);
+		lblEnterKey.setBounds(27, 78, 96, 16);
 		contentPane.add(lblEnterKey);
 		
 		JButton btnStartQuiz = new JButton("Start Quiz");
@@ -54,13 +56,18 @@ public class StartQuizFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String keyT = key.getText();
+				
 				int quizId = Manager.getInstance().getQuizByKey(keyT);
 				if(quizId == -1) {
-					JOptionPane.showMessageDialog(null, "Quiz Key is not correct.");
+				
+					new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), -1).setVisible(true);
+					StartQuizFrame.this.dispose();
+				
 				}else {
 					
 					//
 					new QuizFrame(quizId, id).setVisible(true);
+					StartQuizFrame.this.dispose();
 					
 				}
 				
@@ -79,7 +86,18 @@ public class StartQuizFrame extends JFrame {
 		btnExit.setBackground(Color.WHITE);
 		btnExit.setBounds(146, 149, 117, 49);
 		contentPane.add(btnExit);
+		
+		quizes = Manager.getInstance().getAllQuizesByPractice(0);
+		subjects = new JComboBox<>();
+		subjects.setBounds(144, 108, 272, 27);
+		contentPane.add(subjects);
+		for(Quiz quiz: quizes) {
+			subjects.addItem(quiz.getCategory());
+		}
+		
+		JLabel lblSelectSubject = new JLabel("Select Subject:");
+		lblSelectSubject.setBounds(30, 112, 96, 16);
+		contentPane.add(lblSelectSubject);
 	
 	}
-
 }

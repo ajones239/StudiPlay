@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 import database.Manager;
 import model.IQuizUpdater;
 import model.Question;
+import javax.swing.JCheckBox;
 
 public class CreateQuizFrame extends JFrame {
 
@@ -46,6 +47,7 @@ public class CreateQuizFrame extends JFrame {
 	private JTextField subject;
 	private JLabel lblSubjects;
 	private JButton btnExit;
+	private JCheckBox practiceQuiz;
 
 	public CreateQuizFrame(IQuizUpdater updater, int id) {
 
@@ -117,7 +119,8 @@ public class CreateQuizFrame extends JFrame {
 					String key = getKey();
 					
 					// adding quiz. 
-					manager.addQuiz(quizT, subjectT, minutesT, key, quizes.size(), teacherId, quizes);
+					manager.addQuiz(quizT, subjectT, minutesT, key, quizes.size(), teacherId, quizes,
+							practiceQuiz.isSelected());
 					updater.notifyQuizUpdated();
 					JOptionPane.showMessageDialog(null, "Quiz is added.");
 					dispose();
@@ -244,7 +247,7 @@ public class CreateQuizFrame extends JFrame {
 
 		btnCreateQuiz = new JButton("Create Quiz");
 		btnCreateQuiz.setBackground(Color.WHITE);
-		btnCreateQuiz.setBounds(20, 494, 188, 29);
+		btnCreateQuiz.setBounds(174, 494, 180, 29);
 		contentPane.add(btnCreateQuiz);
 
 		lblTotalQuestions = new JLabel("Total Questions:");
@@ -267,8 +270,12 @@ public class CreateQuizFrame extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnExit.setBounds(220, 494, 117, 29);
+		btnExit.setBounds(360, 494, 117, 29);
 		contentPane.add(btnExit);
+
+		practiceQuiz = new JCheckBox("Practice Quiz");
+		practiceQuiz.setBounds(20, 495, 161, 23);
+		contentPane.add(practiceQuiz);
 
 	}
 
@@ -297,5 +304,4 @@ public class CreateQuizFrame extends JFrame {
 		lblTotalQuestions.setText("Total Questions: " + quizes.size());
 
 	}
-
 }
