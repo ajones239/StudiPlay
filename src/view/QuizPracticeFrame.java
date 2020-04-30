@@ -42,7 +42,7 @@ public class QuizPracticeFrame extends JFrame {
 		btnStartPracticeQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), -1).setVisible(true);
+				new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), -1, true, quizes.get(subjects.getSelectedIndex()).getSize()).setVisible(true);
 				QuizPracticeFrame.this.dispose();
 				
 			}

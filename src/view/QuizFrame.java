@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import animation.AnimationPanel;
 import database.Manager;
 import model.Question;
 import model.Quiz;
@@ -23,7 +25,9 @@ import model.Quiz;
 public class QuizFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentpane;
+	private JPanel shell;
+	private JPanel animationPanel;
 	private JRadioButton option1;
 	private JRadioButton option4;
 	private JRadioButton option3;
@@ -45,36 +49,47 @@ public class QuizFrame extends JFrame {
 	private boolean pause = false;
 	
 	public QuizFrame(int id, int student) {
-		
+		this(id, student, false, -1);
+	}
+	
+	public QuizFrame(int id, int student, boolean practice, int size) { // practice = true when in practice mode
+																		// size = number of questions in quiz.
+		super();
+//		shell = new JPanel();											// In practice mode, shell contains  
+		//shell.setLayout(new BorderLayout());
+//		setContentPane(shell);
+
 		this.studentId = student;
 		quiz = Manager.getInstance().getQuiz(id);
 		seconds = quiz.getMinutes() * 60;
 		setTitle("Quiz of Student");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 671, 473);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		if (practice) 						
+			setBounds(100, 100, 671, 673); // need larger frame for animation panel
+		else
+			setBounds(100, 100, 671, 473);
+		contentpane = new JPanel();
+		contentpane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentpane.setLayout(null);
 		
 		JLabel lblQuiz = new JLabel("Quiz");
 		lblQuiz.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		lblQuiz.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQuiz.setBounds(16, 6, 635, 26);
-		contentPane.add(lblQuiz);
+		contentpane.add(lblQuiz);
 		
 		JLabel lblTitle = new JLabel("Title: "+quiz.getQuizName());
 		lblTitle.setBounds(26, 45, 281, 16);
-		contentPane.add(lblTitle);
+		contentpane.add(lblTitle);
 		
 		lblTime = new JLabel("Time: "+seconds+" seconds");
 		lblTime.setBounds(351, 45, 281, 16);
-		contentPane.add(lblTime);
+		contentpane.add(lblTime);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Questions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(16, 73, 635, 319);
-		contentPane.add(panel);
+		contentpane.add(panel);
 		panel.setLayout(null);
 		
 		questionLbl = new JLabel("Question:");
@@ -165,10 +180,19 @@ public class QuizFrame extends JFrame {
 		});
 		btnExit.setBackground(Color.WHITE);
 		btnExit.setBounds(531, 404, 117, 29);
-		contentPane.add(btnExit);
+		contentpane.add(btnExit);
 		
+		setLayout(new BorderLayout());
+		add(contentpane, BorderLayout.CENTER);
+		if (practice) {
+			//shell.add(contentpane, BorderLayout.NORTH);
+		//	add(contentpane, BorderLayout.NORTH);
+			animationPanel = new AnimationPanel(size, this.getWidth());
+			add(animationPanel, BorderLayout.SOUTH);
+		}
+		//add(shell, BorderLayout.CENTER);
+		//setVisible(true);
 		printNext();
-		
 		startTime();
 	
 	}
