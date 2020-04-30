@@ -26,8 +26,7 @@ public class QuizFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentpane;
-	private JPanel shell;
-	private JPanel animationPanel;
+	private AnimationPanel animationPanel;
 	private JRadioButton option1;
 	private JRadioButton option4;
 	private JRadioButton option3;
@@ -47,6 +46,7 @@ public class QuizFrame extends JFrame {
 	private JButton btnExit;
 	private JButton btnPause;
 	private boolean pause = false;
+	private boolean practice;
 	
 	public QuizFrame(int id, int student) {
 		this(id, student, false, -1);
@@ -55,10 +55,7 @@ public class QuizFrame extends JFrame {
 	public QuizFrame(int id, int student, boolean practice, int size) { // practice = true when in practice mode
 																		// size = number of questions in quiz.
 		super();
-//		shell = new JPanel();											// In practice mode, shell contains  
-		//shell.setLayout(new BorderLayout());
-//		setContentPane(shell);
-
+		this.practice = practice;
 		this.studentId = student;
 		quiz = Manager.getInstance().getQuiz(id);
 		seconds = quiz.getMinutes() * 60;
@@ -125,6 +122,8 @@ public class QuizFrame extends JFrame {
 				// 
 				int selectedIndex = option1.isSelected() ? 0 : option2.isSelected() ? 1 : option3.isSelected() ? 2 : 3;
 				if(correctIndex == selectedIndex){
+					if (practice)
+						animationPanel.step();
 					scores++;
 				}
 				printNext();
@@ -185,13 +184,9 @@ public class QuizFrame extends JFrame {
 		setLayout(new BorderLayout());
 		add(contentpane, BorderLayout.CENTER);
 		if (practice) {
-			//shell.add(contentpane, BorderLayout.NORTH);
-		//	add(contentpane, BorderLayout.NORTH);
 			animationPanel = new AnimationPanel(size, this.getWidth());
 			add(animationPanel, BorderLayout.SOUTH);
 		}
-		//add(shell, BorderLayout.CENTER);
-		//setVisible(true);
 		printNext();
 		startTime();
 	
