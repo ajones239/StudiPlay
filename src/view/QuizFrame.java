@@ -123,9 +123,12 @@ public class QuizFrame extends JFrame {
 				int selectedIndex = option1.isSelected() ? 0 : option2.isSelected() ? 1 : option3.isSelected() ? 2 : 3;
 				if(correctIndex == selectedIndex){
 					if (practice)
-						animationPanel.step();
+						animationPanel.correctAction();
 					scores++;
 				}
+				else
+					if (practice)
+						animationPanel.incorrectAction();
 				printNext();
 				
 			}
