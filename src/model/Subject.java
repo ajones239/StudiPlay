@@ -7,7 +7,7 @@ import database.Manager;
 import model.Question;
 
 public class Subject {
-	public static final String[] SUBJECTS = {"Basic Math", "Algebra", "Science", "Language Arts"};
+	public static final String[] SUBJECTS = {"Basic Math", "Algebra", "Science"};
 	ArrayList<Question> questions;
 	String category;
 	
