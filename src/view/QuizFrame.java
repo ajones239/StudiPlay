@@ -60,7 +60,7 @@ public class QuizFrame extends JFrame {
 		this.studentId = student;
 		quiz = Manager.getInstance().getQuiz(id);
 		seconds = quiz.getMinutes() * 60;
-		setTitle("Quiz of Student");
+		setTitle("StudiPlay");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if (practice) 						
 			setBounds(100, 100, 671, 673); // need larger frame for animation panel
@@ -215,6 +215,8 @@ public class QuizFrame extends JFrame {
 					lblTime.setText("Time: "+seconds+" seconds");
 					if(seconds <= 0) {
 						save();
+						JOptionPane.showMessageDialog(null, "Sorry, looks like you ran out of time.");
+						System.exit(1);
 						break;
 					}
 					

@@ -26,7 +26,7 @@ public class QuizPracticeFrame extends JFrame {
 	 */
 	public QuizPracticeFrame() {
 		
-		setTitle("Quiz Practice");
+		setTitle("StudiPlay");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 396, 231);
 		contentPane = new JPanel();

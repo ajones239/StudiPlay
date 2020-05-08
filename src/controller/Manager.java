@@ -234,6 +234,12 @@ public class Manager {
 		
 	}
 	
+	public void deleteQuiz(String key) {
+		int id = this.getQuizByKey(key);
+		database.execute("DELETE FROM quiz WHERE quizid="+id+";");
+		database.execute("DELETE FROM quizquestionhelper WHERE quizid="+id+";");
+	}
+	
 	/*public ArrayList<Question> getQuestions(String subject) {
 		ArrayList<Question> questions = new ArrayList<>();
 		try {

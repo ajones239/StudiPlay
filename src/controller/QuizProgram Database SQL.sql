@@ -119,7 +119,7 @@ CREATE TABLE `quizQuestionHelper` (
  * Default quiz for Basic Math - Easy: 20 questions on addition, subtraction, multiplication, division, and powers.
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice) 
-	VALUES('Default: Basic Math - Easy', 'Basic Math - Easy', 'default0', 10, 3000, -1, 1);
+	VALUES('Default: Basic Math - Easy', 'Basic Math - Easy', 'default0', 10, 5, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3 * 7 = ?', '14', '21', '18', '24', 1, '3 groups of 7 = 7 + 7 + 7');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -165,7 +165,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Basic Math - Medium: 10 questions on addition, subtraction, multiplication, division, and powers.
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice) 
-	VALUES('Default: Basic Math - Medium', 'Basic Math - Medium', 'default1', 10, 3000, -1, 1);
+	VALUES('Default: Basic Math - Medium', 'Basic Math - Medium', 'default1', 10, 3, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3 * 7 = ?', '14', '21', '18', '24', 1, '3 groups of 7 = 7 + 7 + 7');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -211,7 +211,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Basic Math - Hard: 10 questions on addition, subtraction, multiplication, division, and powers.
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice) 
-	VALUES('Default: Basic Math - Hard', 'Basic Math - Hard', 'default2', 10, 3000, -1, 1);
+	VALUES('Default: Basic Math - Hard', 'Basic Math - Hard', 'default2', 10, 1, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3 * 7 = ?', '14', '21', '18', '24', 1, '3 groups of 7 = 7 + 7 + 7');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -257,7 +257,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Algebra - Easy: 10 basic algebra questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Algebra - Easy', 'Algebra - Easy', 'default3', 10, 3000, -1, 1);
+	VALUES('Default: Algebra - Easy', 'Algebra - Easy', 'default3', 10, 5, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3x + 2 = 11. x = ?', '3', '5', '6', '-1', 0, ' first subtract two from both sides');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -303,7 +303,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Algebra - Medium: 10 basic algebra questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Algebra - Medium', 'Algebra - Medium', 'default4', 10, 3000, -1, 1);
+	VALUES('Default: Algebra - Medium', 'Algebra - Medium', 'default4', 10, 3, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3x + 2 = 11. x = ?', '3', '5', '6', '-1', 0, ' first subtract two from both sides');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -349,7 +349,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Algebra - Hard: 10 basic algebra questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Algebra - Hard', 'Algebra - Hard', 'default5', 10, 3000, -1, 1);
+	VALUES('Default: Algebra - Hard', 'Algebra - Hard', 'default5', 10, 1, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('3x + 2 = 11. x = ?', '3', '5', '6', '-1', 0, ' first subtract two from both sides');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -395,7 +395,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Science - Easy: 10 basic science questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Science - Easy', 'Science - Easy', 'default6', 10, 3000, -1, 1);
+	VALUES('Default: Science - Easy', 'Science - Easy', 'default6', 10, 5, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('What is the chemical formula for water?', 'CO2', 'H2O', 'CH3', 'WAt3R', 1, 'water molecules have 3 atoms');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -405,15 +405,15 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not b or d');
+	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not osmosis or sex');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not a or b');
+	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not apt or photodestructis');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not a or c');
+	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not water or Oxygen');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
@@ -425,7 +425,7 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not a or c');
+	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not helioncis or combustion');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
@@ -441,7 +441,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Science - Medium: 10 basic science questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Science - Medium', 'Science - Medium', 'default7', 10, 3000, -1, 1);
+	VALUES('Default: Science - Medium', 'Science - Medium', 'default7', 10, 3, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('What is the chemical formula for water?', 'CO2', 'H2O', 'CH3', 'WAt3R', 1, 'water molecules have 3 atoms');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -451,15 +451,15 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not b or d');
+	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not osmosis or sex');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not a or b');
+	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not apt or photodestructis');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not a or c');
+	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not water or Oxygen');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
@@ -471,7 +471,7 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not a or c');
+	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not helioncis or combustion');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
@@ -487,7 +487,7 @@ INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
  * Default quiz for Science - Hard: 10 basic science questions
  */
 INSERT INTO quiz(quizName, subject, quizKey, totalQuestions, timeLimit, teacherId, practice)
-	VALUES('Default: Science - Hard', 'Science - Hard', 'default8', 10, 3000, -1, 1);
+	VALUES('Default: Science - Hard', 'Science - Hard', 'default8', 10, 1, -1, 1);
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
 	VALUES('What is the chemical formula for water?', 'CO2', 'H2O', 'CH3', 'WAt3R', 1, 'water molecules have 3 atoms');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
@@ -497,15 +497,15 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not b or d');
+	VALUES('What is gamete cell division called?', 'mitosis', 'meiosis', 'osmosis', 'sex', 1, 'answer is not osmosis or sex');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not a or b');
+	VALUES('What is the opposite of photosynthesis?', 'photodestructis', 'apt', 'cellular recognition', 'cellular respiration', 3, 'answer is not apt or photodestructis');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not a or c');
+	VALUES('What is the main gas in the atmosphere?', 'water', 'CO2', 'Oxygen', 'Nitrogen', 3, 'answer is not water or Oxygen');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
@@ -517,7 +517,7 @@ INSERT INTO question(question, option1, option2, option3, option4, correctIndex,
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 
-	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not a or c');
+	VALUES('What does the sun do to create energy?', 'combustion', 'fission', 'helioncis', 'fusion', 3, 'answer is not helioncis or combustion');
 INSERT INTO quizQuestionHelper(quizId, questionId) VALUES(
 	(SELECT MAX(`quizId`) FROM quiz), (SELECT MAX(`questionId`) FROM question));
 INSERT INTO question(question, option1, option2, option3, option4, correctIndex, help) 

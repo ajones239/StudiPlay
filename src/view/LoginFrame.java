@@ -38,7 +38,7 @@ public class LoginFrame extends JFrame {
 	
 	public LoginFrame() {
 		
-		setTitle("Quiz Program");
+		setTitle("StudiPlay");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 547, 346);
 		contentPane = new JPanel();
@@ -208,8 +208,7 @@ public class LoginFrame extends JFrame {
 				} else {
 
 					JOptionPane.showMessageDialog(null, "Username or Password is incorrect.");
-					loginUsername.setText("");
-					loginPassword.setText("");
+					clear();
 					
 				}
 				
@@ -232,7 +231,7 @@ public class LoginFrame extends JFrame {
 			else {
 				
 				if(manager.isExists(userType, username)) {
-					JOptionPane.showMessageDialog(null, "Username "+username+" is already exists.");
+					JOptionPane.showMessageDialog(null, "Username "+username+" already exists.");
 				}else {
 					manager.register(userType, name, username, password);
 					JOptionPane.showMessageDialog(null, "User registered successfully.");

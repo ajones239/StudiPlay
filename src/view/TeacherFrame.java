@@ -29,6 +29,7 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 	private JTable studentData;
 	private JButton btnCreateQuiz;
 	private JButton btnShowStudentsData;
+	private JButton btnDeleteQuiz;
 	private Manager manager;
 	private int teacherId;
 	private ArrayList<Quiz> quizes;
@@ -67,6 +68,11 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 		btnCreateQuiz.setBounds(20, 52, 117, 29);
 		contentPane.add(btnCreateQuiz);
 		
+		btnDeleteQuiz = new JButton("Delete Quiz");
+		btnDeleteQuiz.setBackground(Color.white);
+		btnDeleteQuiz.setBounds(530, 52, 117, 29);
+		contentPane.add(btnDeleteQuiz);
+		
 		btnShowStudentsData = new JButton("Show Students Data");
 		btnShowStudentsData.setBackground(Color.WHITE);
 		btnShowStudentsData.setBounds(20, 327, 151, 29);
@@ -80,6 +86,22 @@ public class TeacherFrame extends JFrame implements IQuizUpdater{
 			
 			new CreateQuizFrame(this, teacherId).setVisible(true);
 			
+		});
+		
+		btnDeleteQuiz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String key = JOptionPane.showInputDialog("Enter the key of the to be deleted.");
+				if (key != null) {
+					int confirm = JOptionPane.showConfirmDialog(null, 
+							"Are you sure you want to delete the quiz?", 
+							"Warning", JOptionPane.YES_NO_OPTION, 
+							JOptionPane.WARNING_MESSAGE);
+					if (confirm == JOptionPane.YES_OPTION) {
+						manager.deleteQuiz(key);
+						updateQuizTable();
+					}
+				}
+			}
 		});
 		
 		btnShowStudentsData.addActionListener(new ActionListener() {
