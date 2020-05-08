@@ -41,8 +41,27 @@ public class QuizPracticeFrame extends JFrame {
 		JButton btnStartPracticeQuiz = new JButton("Start Practice Quiz");
 		btnStartPracticeQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), -1, true, quizes.get(subjects.getSelectedIndex()).getSize()).setVisible(true);
+				int diffMultiplier;
+				String[] difficulty = ((String) subjects.getSelectedItem()).split(" ");
+				switch (difficulty[difficulty.length-1]) {
+				case "Easy": 
+					diffMultiplier = 1; 
+					break;
+				case "Medium": 
+					diffMultiplier = 2; 
+					break;
+				case "Hard": 
+					diffMultiplier = 3; 
+					break;
+				default: 
+					diffMultiplier = 1;
+				}
+				new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), 
+						-1, 
+						true, 
+						diffMultiplier,
+						quizes.get(subjects.getSelectedIndex()).getSize()
+						).setVisible(true);
 				QuizPracticeFrame.this.dispose();
 				
 			}

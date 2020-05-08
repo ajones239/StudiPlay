@@ -49,10 +49,10 @@ public class QuizFrame extends JFrame {
 	private boolean practice;
 	
 	public QuizFrame(int id, int student) {
-		this(id, student, false, -1);
+		this(id, student, false, 1, -1);
 	}
 	
-	public QuizFrame(int id, int student, boolean practice, int size) { // practice = true when in practice mode
+	public QuizFrame(int id, int student, boolean practice, int diffMultiplier, int size) { // practice = true when in practice mode
 																		// size = number of questions in quiz.
 		super();
 		this.practice = practice;
@@ -119,12 +119,14 @@ public class QuizFrame extends JFrame {
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
-				// 
 				int selectedIndex = option1.isSelected() ? 0 : option2.isSelected() ? 1 : option3.isSelected() ? 2 : 3;
 				if(correctIndex == selectedIndex){
-					if (practice)
-						animationPanel.correctAction();
-					scores++;
+					if (practice) {
+						animationPanel.correctAction(diffMultiplier);
+						scores+= 1 * diffMultiplier;
+					}
+					else
+						scores++; // difficulty only affects practice quiz scores
 				}
 				else
 					if (practice)

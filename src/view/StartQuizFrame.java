@@ -65,7 +65,6 @@ public class StartQuizFrame extends JFrame {
 				
 				}else {
 					
-					//
 					new QuizFrame(quizId, id).setVisible(true);
 					StartQuizFrame.this.dispose();
 					

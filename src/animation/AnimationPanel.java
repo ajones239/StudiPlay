@@ -38,8 +38,8 @@ public class AnimationPanel extends JPanel {
 		add(text, BorderLayout.SOUTH);
 	}
 	
-	public void correctAction() {
-		score++;
+	public void correctAction(int multiplier) {
+		score+= 1*multiplier;
 		text.setText(CORRECT_MSG+" Current score: "+score);
 		text.setForeground(Color.black);
 		text.repaint();
