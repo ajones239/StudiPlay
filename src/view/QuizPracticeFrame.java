@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import database.Manager;
+import controller.Manager;
 import model.Quiz;
 
 public class QuizPracticeFrame extends JFrame {

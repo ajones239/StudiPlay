@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import animation.AnimationPanel;
-import database.Manager;
+import controller.Manager;
 import model.Question;
 import model.Quiz;
 

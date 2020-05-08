@@ -32,7 +32,7 @@ public class AnimationPanel extends JPanel {
 		stepSize = width/stepCount;
 		this.stepCount = stepCount;
 		this.setPreferredSize(new Dimension(10, 200));
-		avatar = new Avatar(0, 30, "src/animation/alien2.png"); // numbers shouldn't be hardcoded
+		avatar = new Avatar(0, 30, "src/animation/alien2.png");
 		setLayout(new BorderLayout());
 		add(avatar);
 		add(text, BorderLayout.SOUTH);
@@ -41,12 +41,14 @@ public class AnimationPanel extends JPanel {
 	public void correctAction() {
 		score++;
 		text.setText(CORRECT_MSG+" Current score: "+score);
+		text.setForeground(Color.black);
 		text.repaint();
 		step();
 	}
 	
 	public void incorrectAction() {
 		text.setText(INCORRECT_MSG+" Current score: "+score);
+		text.setForeground(Color.RED);
 		text.repaint();
 	}
 	

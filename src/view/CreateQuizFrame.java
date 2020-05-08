@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import database.Manager;
+import controller.Manager;
 import model.IQuizUpdater;
 import model.Question;
 import javax.swing.JCheckBox;

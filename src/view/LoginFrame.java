@@ -16,7 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import database.Manager;
+import controller.Manager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -198,8 +199,9 @@ public class LoginFrame extends JFrame {
 							new LoginFrame().setVisible(true);
 						else if (sessionType.equals(sessionTypes[1])) 			// Quiz option -> StartQuizFrame
 							new StartQuizFrame(id).setVisible(true);
-						else 											 		// Practice option -> PracticeMainFrame
+						else { 											 		// Practice option -> PracticeMainFrame
 							new QuizPracticeFrame().setVisible(true);;
+						}
 					}
 					dispose();
 					

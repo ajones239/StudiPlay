@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import database.Manager;
+import controller.Manager;
 import model.IQuizUpdater;
 import model.Quiz;
 import java.awt.event.ActionListener;

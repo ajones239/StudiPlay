@@ -3,7 +3,7 @@ package model;
 
 import java.util.*;
 
-import database.Manager;
+import controller.Manager;
 import model.Question;
 
 public class Subject {
