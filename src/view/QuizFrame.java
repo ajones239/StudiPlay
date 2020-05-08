@@ -47,6 +47,7 @@ public class QuizFrame extends JFrame {
 	private JButton btnPause;
 	private boolean pause = false;
 	private boolean practice;
+	private ButtonGroup group;
 	
 	public QuizFrame(int id, int student) {
 		this(id, student, false, 1, -1);
@@ -108,7 +109,7 @@ public class QuizFrame extends JFrame {
 		option4 = new JRadioButton("Option 1");
 		option4.setBounds(22, 213, 592, 23);
 		panel.add(option4);
-		ButtonGroup group = new ButtonGroup();
+		group = new ButtonGroup();
 		group.add(option1);
 		group.add(option2);
 		group.add(option3);
@@ -246,7 +247,7 @@ public class QuizFrame extends JFrame {
 			option2.setText(question.getOption2());
 			option3.setText(question.getOption3());
 			option4.setText(question.getOption4());
-			
+			group.clearSelection();
 		}
 		
 	}

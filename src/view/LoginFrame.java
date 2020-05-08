@@ -208,6 +208,8 @@ public class LoginFrame extends JFrame {
 				} else {
 
 					JOptionPane.showMessageDialog(null, "Username or Password is incorrect.");
+					loginUsername.setText("");
+					loginPassword.setText("");
 					
 				}
 				

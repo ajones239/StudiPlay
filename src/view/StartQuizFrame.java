@@ -94,8 +94,8 @@ public class StartQuizFrame extends JFrame {
 			subjects.addItem(quiz.getCategory());
 		}
 		
-		JLabel lblSelectSubject = new JLabel("Select Subject:");
-		lblSelectSubject.setBounds(30, 112, 96, 16);
+		JLabel lblSelectSubject = new JLabel("Select Quiz:");
+		lblSelectSubject.setBounds(30, 112, 126, 16);
 		contentPane.add(lblSelectSubject);
 	
 	}
