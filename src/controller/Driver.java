@@ -9,9 +9,9 @@ public class Driver {
 	public static void main(String[] args) {
 
 		if (args.length > 0) {
-			String host = "";
-			String user = "";
-			String pass = "";
+			String host = "127.0.0.1";
+			String user = "root";
+			String pass = "1179215aA";
 			for (String arg: args) {
 				if (arg.substring(0, 4).equals("hostname:"))
 					host = arg.split(":")[1];
