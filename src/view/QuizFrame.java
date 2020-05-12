@@ -184,7 +184,10 @@ public class QuizFrame extends JFrame {
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				if (!practice)
+					save();
+				exit();
+				new LoginFrame().setVisible(true);
 			}
 		});
 		btnExit.setBackground(Color.WHITE);
@@ -271,6 +274,13 @@ public class QuizFrame extends JFrame {
 		
 		Manager.getInstance().addScore(studentId, quiz.getId(), quiz.getSize(), scores);
 		
+	}
+	
+	/**
+	 * Dispose this frame
+	 */
+	private void exit() {
+		dispose();
 	}
 	
 }

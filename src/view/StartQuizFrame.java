@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -65,16 +66,14 @@ public class StartQuizFrame extends JFrame {
 				String keyT = key.getText();
 				
 				int quizId = Manager.getInstance().getQuizByKey(keyT);
-				if(quizId == -1) {
+				if(quizId != -1) {
 				
 					new QuizFrame(quizes.get(subjects.getSelectedIndex()).getId(), -1).setVisible(true);
 					StartQuizFrame.this.dispose();
 				
 				}else {
 					
-					new QuizFrame(quizId, id).setVisible(true);
-					StartQuizFrame.this.dispose();
-					
+					JOptionPane.showMessageDialog(null, "Error: no quiz exists with this key.", "Wrong key", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -86,7 +85,9 @@ public class StartQuizFrame extends JFrame {
 		JButton btnExit = new JButton("Exit");			 // exit button
 		btnExit.addActionListener(new ActionListener() { // on action, exit program
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				exit();
+				new LoginFrame().setVisible(true);
+			//	System.exit(0);
 			}
 		});
 		btnExit.setBackground(Color.WHITE);
@@ -106,4 +107,12 @@ public class StartQuizFrame extends JFrame {
 		contentPane.add(lblSelectSubject);
 	
 	}
+	
+	/**
+	 * Dispose this frame
+	 */
+	private void exit() {
+		dispose();
+	}
+	
 }

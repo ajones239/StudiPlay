@@ -185,7 +185,8 @@ public class TeacherFrame extends JFrame implements IQuizUpdater {
 		btnExit = new JButton("Exit");					// exit button that closes program
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				exit();
+				new LoginFrame().setVisible(true);
 			}
 		});
 		btnExit.setBackground(Color.WHITE);
@@ -200,5 +201,10 @@ public class TeacherFrame extends JFrame implements IQuizUpdater {
 	@Override
 	public void notifyQuizUpdated() {
 		updateQuizTable();
+	}
+	
+	
+	private void exit() {
+		dispose();
 	}
 }
