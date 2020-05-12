@@ -21,6 +21,9 @@ import controller.Manager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This is the initial Login JFrame
+ */
 public class LoginFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -48,7 +51,6 @@ public class LoginFrame extends JFrame {
 		
 		this.manager = Manager.getInstance();
 		
-		// /...
 		addComponents();
 		listeners();
 
@@ -56,7 +58,7 @@ public class LoginFrame extends JFrame {
 	
 	private void addComponents() {
 		
-		JLabel lblQuizProgram = new JLabel("Quiz Program");
+		JLabel lblQuizProgram = new JLabel("StudiPlay");
 		lblQuizProgram.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		lblQuizProgram.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQuizProgram.setBounds(28, 6, 485, 34);
@@ -170,13 +172,13 @@ public class LoginFrame extends JFrame {
 	
 	private void listeners() {
 		
-		btnLogin.addActionListener(action -> {
+		btnLogin.addActionListener(action -> {						// login button
 			
 			String userType = loginType.getSelectedItem().toString();
 			String username = loginUsername.getText().toString();
 			String password = String.valueOf(loginPassword.getPassword());
 			
-			if(username.isEmpty() || password.isEmpty()) {
+			if(username.isEmpty() || password.isEmpty()) {				// popup warning if fields are left empty
 				
 				JOptionPane.showMessageDialog(null, "No any field should be empty.");
 				
@@ -185,7 +187,6 @@ public class LoginFrame extends JFrame {
 				int id = manager.login(userType, username, password);
 				if(id != -1) {
 
-					/// move ahead.
 					if(userType.equals("TEACHER")) {
 						new TeacherFrame(id).setVisible(true);
 					}else {
@@ -216,7 +217,7 @@ public class LoginFrame extends JFrame {
 			
 		});
 		
-		btnRegister.addActionListener(action -> {
+		btnRegister.addActionListener(action -> {												// register button
 			
 			String userType = regType.getSelectedItem().toString();
 			String name = regName.getText().toString();
@@ -225,13 +226,13 @@ public class LoginFrame extends JFrame {
 			
 			if(username.isEmpty() || password.isEmpty()) {
 				
-				JOptionPane.showMessageDialog(null, "No any field should be empty.");
+				JOptionPane.showMessageDialog(null, "No any field should be empty.");		// popup on empty fields
 				
 			} 
 			else {
 				
 				if(manager.isExists(userType, username)) {
-					JOptionPane.showMessageDialog(null, "Username "+username+" already exists.");
+					JOptionPane.showMessageDialog(null, "Username "+username+" already exists.");	// popup if username already exists
 				}else {
 					manager.register(userType, name, username, password);
 					JOptionPane.showMessageDialog(null, "User registered successfully.");
@@ -244,6 +245,9 @@ public class LoginFrame extends JFrame {
 		
 	}
 	
+	/**
+	 * Clears fields
+	 */
 	private void clear() {
 
 		loginType.setSelectedIndex(0);		

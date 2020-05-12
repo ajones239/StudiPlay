@@ -22,6 +22,9 @@ import model.IQuizUpdater;
 import model.Question;
 import javax.swing.JCheckBox;
 
+/**
+ * JFrame for creating Quizzes
+ */
 public class CreateQuizFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -49,6 +52,11 @@ public class CreateQuizFrame extends JFrame {
 	private JButton btnExit;
 	private JCheckBox practiceQuiz;
 
+	/**
+	 * constructor
+	 * @param updater 
+	 * @param id
+	 */
 	public CreateQuizFrame(IQuizUpdater updater, int id) {
 
 		setTitle("Create Quiz");
@@ -59,7 +67,6 @@ public class CreateQuizFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		//
 		this.teacherId = id;
 		manager = Manager.getInstance();
 		this.updater = updater;
@@ -71,9 +78,12 @@ public class CreateQuizFrame extends JFrame {
 
 	}
 
+	/**
+	 * Add listeners on buttons
+	 */
 	private void listeners() {
 
-		add.addActionListener(new ActionListener() {
+		add.addActionListener(new ActionListener() {		//	Make sure input is valid. no empty fields
 			public void actionPerformed(ActionEvent e) {
 
 				String questionT = question.getText().toString();
@@ -98,14 +108,14 @@ public class CreateQuizFrame extends JFrame {
 			}
 		});
 
-		btnCreateQuiz.addActionListener(new ActionListener() {
+		btnCreateQuiz.addActionListener(new ActionListener() {			// button for creating quiz
 			public void actionPerformed(ActionEvent e) {
 
 				String quizT = quizTitle.getText().toString();
 				String subjectT = subject.getText().toString();
 				int minutesT = 0;
 				try {
-					minutesT = Integer.parseInt(timeLimit.getText());
+					minutesT = Integer.parseInt(timeLimit.getText());				// Scrubs/checks input to make sure its valid
 				} 
 				catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Time should be in number.");
@@ -119,7 +129,7 @@ public class CreateQuizFrame extends JFrame {
 					String key = getKey();
 					
 					// adding quiz. 
-					manager.addQuiz(quizT, subjectT, minutesT, key, quizes.size(), teacherId, quizes,
+					manager.addQuiz(quizT, subjectT, minutesT, key, quizes.size(), teacherId, quizes,	// add quiz to database
 							practiceQuiz.isSelected());
 					updater.notifyQuizUpdated();
 					JOptionPane.showMessageDialog(null, "Quiz is added.");
@@ -132,13 +142,17 @@ public class CreateQuizFrame extends JFrame {
 
 	}
 
+	/**
+	 * generate randome key
+	 * @return key as a String
+	 */
 	public String getKey() {
 
 		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
 
 		StringBuilder sb = new StringBuilder(10);
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++) {							// builing random string key
 
 			int index = (int) (characters.length() * Math.random());
 
@@ -148,6 +162,9 @@ public class CreateQuizFrame extends JFrame {
 		return sb.toString();
 	}
 
+	/**
+	 * Adds components to contentPane
+	 */
 	private void addComponents() {
 
 		quizTitle = new JTextField();
@@ -265,7 +282,7 @@ public class CreateQuizFrame extends JFrame {
 		
 		btnExit = new JButton("Exit");
 		btnExit.setBackground(Color.WHITE);
-		btnExit.addActionListener(new ActionListener() {
+		btnExit.addActionListener(new ActionListener() {	// exit button to exit program
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -279,6 +296,9 @@ public class CreateQuizFrame extends JFrame {
 
 	}
 
+	/**
+	 * Updates table with question data
+	 */
 	private void updateTable() {
 
 		try {

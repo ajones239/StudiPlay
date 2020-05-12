@@ -3,8 +3,8 @@ package animation;
 import java.awt.*;
 
 /**
-   A shape that can be moved around.
-*/
+ * A shape that can be moved around.
+ */
 public interface MoveableShape
 {
    /**
@@ -12,6 +12,7 @@ public interface MoveableShape
       @param g2 the graphics context
    */
    void draw(Graphics2D g2);
+
    /**
       Moves the shape by a given amount.
       @param dx the amount to translate in x-direction

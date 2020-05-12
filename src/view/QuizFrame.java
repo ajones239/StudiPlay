@@ -22,10 +22,13 @@ import controller.Manager;
 import model.Question;
 import model.Quiz;
 
+/**
+ * Main frame for taking quizzes, both practice and exam
+ */
 public class QuizFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentpane;
+	private JPanel contentpane;						
 	private AnimationPanel animationPanel;
 	private JRadioButton option1;
 	private JRadioButton option4;
@@ -58,9 +61,9 @@ public class QuizFrame extends JFrame {
 		super();
 		this.practice = practice;
 		this.studentId = student;
-		quiz = Manager.getInstance().getQuiz(id);
+		quiz = Manager.getInstance().getQuiz(id); // connects to database, gets quiz
 		seconds = quiz.getMinutes() * 60;
-		setTitle("StudiPlay");
+		setTitle(quiz.getQuizName());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if (practice) 						
 			setBounds(100, 100, 671, 673); // need larger frame for animation panel
@@ -119,11 +122,11 @@ public class QuizFrame extends JFrame {
 		
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+					// selectedIndex = selected radioButton
 				int selectedIndex = option1.isSelected() ? 0 : option2.isSelected() ? 1 : option3.isSelected() ? 2 : 3;
 				if(correctIndex == selectedIndex){
-					if (practice) {
-						animationPanel.correctAction(diffMultiplier);
+					if (practice) {										// if practice quiz, update animation panel
+						animationPanel.correctAction(diffMultiplier);	// and use the difficulty score multiplier
 						scores+= 1 * diffMultiplier;
 					}
 					else
@@ -131,8 +134,8 @@ public class QuizFrame extends JFrame {
 				}
 				else
 					if (practice)
-						animationPanel.incorrectAction();
-				printNext();
+						animationPanel.incorrectAction();		// incorrect action (wrong answer) for practice quizzes
+				printNext(); // next question
 				
 			}
 		});
@@ -144,7 +147,7 @@ public class QuizFrame extends JFrame {
 		btnHint = new JButton("Hint");
 		
 		btnHint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				// show hint button
 		
 				JOptionPane.showMessageDialog(null, "Hint: "+hint);
 				
@@ -156,11 +159,11 @@ public class QuizFrame extends JFrame {
 		panel.add(btnHint);
 		
 		btnPause = new JButton("Pause");
-		btnPause.addActionListener(new ActionListener() {
+		btnPause.addActionListener(new ActionListener() {			// pause timer, only if not practice
 			public void actionPerformed(ActionEvent e) {
 				
 				pause = !pause;
-				if(pause) {
+				if(pause && practice) {			// can only pause timer on practice mode
 					execute = false;
 					btnPause.setText("Continue");
 					btnNext.setEnabled(false);
@@ -168,7 +171,8 @@ public class QuizFrame extends JFrame {
 					execute = true;
 					btnPause.setText("Pause");
 					btnNext.setEnabled(true);
-					startTime();
+					if(practice) // so multiple timers aren't started
+						startTime();
 				}
 				
 			}
@@ -189,22 +193,25 @@ public class QuizFrame extends JFrame {
 		
 		setLayout(new BorderLayout());
 		add(contentpane, BorderLayout.CENTER);
-		if (practice) {
+		if (practice) {														// adding animationpane
 			animationPanel = new AnimationPanel(size, this.getWidth());
 			add(animationPanel, BorderLayout.SOUTH);
 		}
-		printNext();
-		startTime();
+		printNext(); // print first question
+		startTime(); // start timer
 	
 	}
 	
+	/**
+	 * Starts thread for timer 
+	 */
 	private void startTime() {
 		
 		new Thread() {
 			
 			public void run() {
 				
-				while(execute) {
+				while(execute) { // can be paused
 					
 					try {
 						Thread.sleep(1000);
@@ -212,12 +219,12 @@ public class QuizFrame extends JFrame {
 						e.printStackTrace();
 					}
 					seconds--;
-					lblTime.setText("Time: "+seconds+" seconds");
+					lblTime.setText("Time: "+seconds+" seconds");	// sets label
 					if(seconds <= 0) {
-						save();
-						JOptionPane.showMessageDialog(null, "Sorry, looks like you ran out of time.");
-						System.exit(1);
-						break;
+						save();																		// save score, exit, and
+						JOptionPane.showMessageDialog(null, "Sorry, looks like you ran out of time."); // have popup window
+						System.exit(1);																// tell user if timer runs
+						break;																		// out
 					}
 					
 				}
@@ -228,6 +235,9 @@ public class QuizFrame extends JFrame {
 		
 	}
 
+	/**
+	 * Prints next question on the screen
+	 */
 	private void printNext() {
 	
 		if(index == quiz.getSize()) {
@@ -235,7 +245,7 @@ public class QuizFrame extends JFrame {
 			if(studentId != -1) {
 				save();
 			}
-			JOptionPane.showMessageDialog(null, "Quiz is Complete.\nYour Score: "+scores);
+			JOptionPane.showMessageDialog(null, "Quiz is Complete.\nYour Score: "+scores);	// exit when quiz is over
 			dispose();
 			new LoginFrame().setVisible(true);
 		} else {
@@ -254,6 +264,9 @@ public class QuizFrame extends JFrame {
 		
 	}
 	
+	/**
+	 * saves score in database
+	 */
 	private void save() {
 		
 		Manager.getInstance().addScore(studentId, quiz.getId(), quiz.getSize(), scores);

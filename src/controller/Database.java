@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
+ * This class models a database. Directly interacts with mysql database.
  */
 public class Database {
     
@@ -19,11 +19,15 @@ public class Database {
     private Statement statement;
     private ResultSet result;
     
+    /**
+     * Singleton class. Must use this method instead of constructor.
+     * @return this
+     */
     public static Database getInstance(){
         
         if(database == null){
             
-            database = new Database();
+            database = new Database("127.0.0.1:3306", "root", "1179215aA");
             return database;
 
         }
@@ -32,11 +36,14 @@ public class Database {
         
     }
     
-    private Database(){
+    /**
+     * Private constructor
+     */
+    private Database(String host, String user, String pass){
         
         try { 
             
-        	connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/quizprogram?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1179215aA");
+        	connection = DriverManager.getConnection("jdbc:mysql://"+host+"/quizprogram?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC", user, pass);
         	statement = connection.createStatement();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -44,6 +51,11 @@ public class Database {
         
     }
     
+    /**
+     * Queries the database
+     * @param query 
+     * @return result of query
+     */
     public ResultSet executeQuery(String query){
         
         result = null;
@@ -57,6 +69,10 @@ public class Database {
         return result;
     }
     
+    /**
+     * Executes command with no return in database
+     * @param query
+     */
     public void execute(String query){
         
         try {
@@ -65,6 +81,10 @@ public class Database {
             ex.printStackTrace();
         }
         
+    }
+    
+    public void setCredentials(String host, String user, String pass) {
+    	database = new Database(host, user, pass);
     }
     
 }
