@@ -84,7 +84,7 @@ public class TeacherFrame extends JFrame implements IQuizUpdater {
 		
 		btnShowStudentsData = new JButton("Show Student Scores");
 		btnShowStudentsData.setBackground(Color.WHITE);
-		btnShowStudentsData.setBounds(20, 327, 181, 29);
+		btnShowStudentsData.setBounds(20, 327, 201, 29);
 		contentPane.add(btnShowStudentsData);
 		
 	}
